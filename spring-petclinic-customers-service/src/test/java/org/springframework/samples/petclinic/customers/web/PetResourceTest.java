@@ -62,17 +62,17 @@ class PetResourceTest {
     @Test
     void shouldntGetAPetInJSonFormat() throws Exception {
 
-        Pet pet = setupInvalidPet();
+        Pet pet = setupSecondPet();
 
         given(petRepository.findById(18)).willReturn(Optional.of(pet));
 
 
         mvc.perform(get("/owners/2/pets/18").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json"))
-            .andExpect(jsonPath("$.id").value(2))
-            .andExpect(jsonPath("$.name").value("Basil"))
-            .andExpect(jsonPath("$.type.id").value(6));
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json"))
+        .andExpect(jsonPath("$.id").value(18))
+        .andExpect(jsonPath("$.name").value("Bernard"))
+        .andExpect(jsonPath("$.type.id").value(6));
     }
 
     @Test
@@ -81,6 +81,15 @@ class PetResourceTest {
         given(petRepository.findById(2)).willReturn(Optional.empty());
 
         mvc.perform(get("/owners/2/pets/2").accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void shouldFailToGetASecondPetInJSonFormat() throws Exception {
+
+        given(petRepository.findById(18)).willReturn(Optional.empty());
+
+        mvc.perform(get("/owners/2/pets/18").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
     }
 
@@ -102,7 +111,7 @@ class PetResourceTest {
         return pet;
     }
 
-    private Pet setupInvalidPet() {
+    private Pet setupSecondPet() {
         if(owner==null){
             owner = setupOwner();
         }
