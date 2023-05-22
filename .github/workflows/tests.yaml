@@ -38,6 +38,8 @@ jobs:
           # Exécuter ici vos commandes de tests, par exemple :
           # npm install
           # npm test
+          with: 
+            myapp
 
       - name: Jenkins Integration
         run: |
