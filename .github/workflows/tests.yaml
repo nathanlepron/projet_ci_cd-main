@@ -15,7 +15,6 @@ jobs:
     
     steps:
       - name: Build
-        uses: action/action@v1
         with:
             java-version: '11'
             script:
