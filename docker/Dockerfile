@@ -8,7 +8,7 @@ RUN chmod +x dockerize
 
 # This is the first layer that won't be cached
 ARG ARTIFACT_NAME
-ADD projet_ci_cd-main.jar /app.jar
+ADD app.jar /app.jar
 
 
 ENV SPRING_PROFILES_ACTIVE docker
