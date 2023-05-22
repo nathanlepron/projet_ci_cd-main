@@ -44,7 +44,7 @@ jobs:
         run: |
           pwd
           ls
-          docker build -t monapp ./docker
+          docker build -t app ./docker
         
       - name: Run tests on Docker image
         run: |
