@@ -30,15 +30,6 @@ jobs:
              -Djava.awt.headless=true
              --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
 
-    
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'  # Modifier si nécessaire
-
       - name: Build Docker image
         run: docker build -t myapp .
 
