@@ -6,6 +6,8 @@ WORKDIR /app
 RUN wget -O dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-alpine-linux-amd64-v0.6.1.tar.gz
 RUN tar xzf dockerize.tar.gz
 RUN chmod +x dockerize
+RUN pwd
+RUN LS
 
 # This is the first layer that won't be cached
 ADD app.jar /app.jar
