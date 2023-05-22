@@ -41,6 +41,8 @@ class PetResourceTest {
     @MockBean
     OwnerRepository ownerRepository;
 
+    private Owner owner;
+
     @Test
     void shouldGetAPetInJSonFormat() throws Exception {
 
@@ -57,10 +59,35 @@ class PetResourceTest {
             .andExpect(jsonPath("$.type.id").value(6));
     }
 
+    @Test
+    void shouldntGetAPetInJSonFormat() throws Exception {
+
+        Pet pet = setupInvalidPet();
+
+        given(petRepository.findById(18)).willReturn(Optional.of(pet));
+
+
+        mvc.perform(get("/owners/2/pets/18").accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json"))
+            .andExpect(jsonPath("$.id").value(2))
+            .andExpect(jsonPath("$.name").value("Basil"))
+            .andExpect(jsonPath("$.type.id").value(6));
+    }
+
+    @Test
+    void shouldFailToGetAPetInJSonFormat() throws Exception {
+
+        given(petRepository.findById(2)).willReturn(Optional.empty());
+
+        mvc.perform(get("/owners/2/pets/2").accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
+    }
+
     private Pet setupPet() {
-        Owner owner = new Owner();
-        owner.setFirstName("George");
-        owner.setLastName("Bush");
+        if(owner==null){
+            owner = setupOwner();
+        }
 
         Pet pet = new Pet();
 
@@ -73,5 +100,29 @@ class PetResourceTest {
 
         owner.addPet(pet);
         return pet;
+    }
+
+    private Pet setupInvalidPet() {
+        if(owner==null){
+            owner = setupOwner();
+        }
+        Pet pet = new Pet();
+
+        pet.setName("Bernard");
+        pet.setId(18);
+
+        PetType petType = new PetType();
+        petType.setId(6);
+        pet.setType(petType);
+
+        owner.addPet(pet);
+        return pet;
+    }
+    
+    private Owner setupOwner(){
+        owner = new Owner();
+        owner.setFirstName("George");
+        owner.setLastName("Bush");
+        return owner;
     }
 }

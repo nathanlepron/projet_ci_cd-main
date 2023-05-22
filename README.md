@@ -1,5 +1,55 @@
-<<<<<<< HEAD
-# Distributed version of the Spring PetClinic Sample Application built with Spring Cloud 
+## Projet Java Spring Boot avec SonarQube et Jenkins
+Ce projet est une application Java Spring Boot intégrant SonarQube pour l'analyse statique du code et Jenkins pour l'intégration continue.
+
+## Prérequis
+
+**Java Development Kit (JDK) :** Assurez-vous d'avoir installé JDK 8 ou une version ultérieure. Vous pouvez vérifier votre version de Java en exécutant la commande java -version dans votre terminal.
+
+**Apache Maven :** Assurez-vous d'avoir installé Maven. Vous pouvez vérifier votre installation en exécutant la commande mvn -version dans votre terminal.
+
+**Jenkins :** Assurez-vous d'avoir installé Jenkins sur votre machine ou d'avoir accès à une instance de Jenkins disponible. Consultez la documentation de Jenkins pour plus d'informations sur l'installation.
+
+**SonarQube :** Assurez-vous d'avoir installé SonarQube sur votre machine ou d'avoir accès à une instance de SonarQube disponible. Consultez la documentation de SonarQube pour plus d'informations sur l'installation.
+
+_Possibilités de détection de SonarQube_
+- Détection des bugs, des vulnérabilités et des duplications de code.
+- Analyse de la qualité du code et de la documentation.
+- Mesures de la couverture de code.
+- Intégration continue.
+
+## Installation
+**Projet Git :** `` https://github.com/nathanlepron/projet_ci_cd-main.git ``
+
+Compiler le projet (dans le source du projet) : ``mvn clean install``
+
+Démarrez SonarQube et assurez-vous qu'il est accessible.
+
+Configurez le fichier sonar-project.properties dans le répertoire racine de votre projet pour spécifier les informations de connexion à votre instance de SonarQube. 
+
+```
+sonar.host.url=http://localhost:9000
+
+sonar.login=admin
+
+sonar.password=admin
+```
+
+Exécutez l'analyse SonarQube pour le projet : `` mvn sonar:sonar ``
+
+Démarrez Jenkins et assurez-vous qu'il est accessible.
+
+Configurez un nouveau projet Jenkins et spécifiez les étapes de construction, telles que la récupération du code à partir du référentiel Git, la compilation du projet avec Maven, etc.
+
+Configurez la tâche SonarQube Jenkins pour exécuter l'analyse SonarQube après la construction du projet. Spécifiez les informations de connexion à votre instance de SonarQube.
+
+Enregistrez et exécutez le projet Jenkins pour effectuer une intégration continue et lancer l'analyse SonarQube.
+
+Félicitations! Vous avez maintenant installé avec succès le projet Java Spring Boot intégrant SonarQube et Jenkins. Le projet sera analysé statiquement par SonarQube à chaque exécution de la construction dans Jenkins.
+
+
+---------------------------
+### Readme de base 
+### Distributed version of the Spring PetClinic Sample Application built with Spring Cloud 
 
 [![Build Status](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices.svg?branch=master)](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -160,19 +210,8 @@ For pull requests, editor preferences are available in the [editor config](.edit
 
 [Configuration repository]: https://github.com/spring-petclinic/spring-petclinic-microservices-config
 [Spring Boot Actuator Production Ready Metrics]: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html
-=======
-# Projet management de qualité
+
+### Projet management de qualité
 
 
-Possibilités de détection de SonarQube : 
 
-- Détection des bugs, des vulnérabilités et des duplications de code.
-
-- Analyse de la qualité du code et de la documentation.
-
-- Mesures de la couverture de code.
-
-- Intégration continue.
-
-
->>>>>>> 859e54ef6afc087c223c43246762a24e7dcc40e6

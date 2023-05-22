@@ -14,13 +14,24 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Build
-        uses: action/action@v1
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
         with:
-            script:
-              -chmod +x ./mvnw
-             -./mvnw package -Dmaven.test.skip=true
-              -./mvnw compile
+         distribution: 'temurin' # See 'Supported distributions' for available options
+         java-version: '17'
+    
+      - name: Build
+        uses: actions/setup-java@v2
+        with:
+         distribution: 'temurin' # See 'Supported distributions' for available options
+         java-version: '17'
+         script:
+            -chmod +x ./mvnw 
+            -./mvnw package -Dmaven.test.skip=true
+            -./mvnw compile
              -Dmaven.test.skip=true
              -Dhttps.protocols=TLSv1.2
              -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
@@ -29,23 +40,15 @@ jobs:
              -Djava.awt.headless=true
              --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
 
-    
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'  # Modifier si nécessaire
-
       - name: Build Docker image
-        run: docker build -t myapp .
-
-      - name: Run tests
         run: |
-          # Exécuter ici vos commandes de tests, par exemple :
-          # npm install
-          # npm test
+          pwd
+          ls
+          docker build -t app ./docker
+        
+      - name: Run tests on Docker image
+        run: |
+          docker run myapp mvn clean test
 
       - name: Jenkins Integration
         run: |
@@ -58,7 +61,7 @@ jobs:
           curl -X POST -u $JENKINS_USER:$JENKINS_TOKEN $JENKINS_URL/job/NOM_DU_JOB/build
           
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v3
+        uses: sonarsource/sonarqube-scan-action@master
         with:
           projectBaseDir: ./  # Modifier si nécessaire
           token: ${{ secrets.SONARQUBE_TOKEN }}
