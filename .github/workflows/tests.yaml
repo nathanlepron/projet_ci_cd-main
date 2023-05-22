@@ -40,8 +40,8 @@ jobs:
          distribution: 'temurin' # See 'Supported distributions' for available options
          java-version: '17'
         path: ~/.jar
-          key:
-            ${{ env.cache-name }}
+        key:
+          ${{ env.cache-name }}
          script:
             -chmod +x ./mvnw 
             -./mvnw package -Dmaven.test.skip=true
