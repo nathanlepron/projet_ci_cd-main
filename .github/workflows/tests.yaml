@@ -23,6 +23,15 @@ jobs:
          distribution: 'temurin' # See 'Supported distributions' for available options
          java-version: '17'
     
+      - name: Cache jar
+        id: cache-jar
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-jar
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.jar
+    
       - name: Build
         uses: actions/setup-java@v2
         with:
@@ -39,11 +48,6 @@ jobs:
              -Dorg.slf4j.simpleLogger.showDateTime=true
              -Djava.awt.headless=true
              --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: Executable
-          path: ./app.jar
           
       - name: Build Docker image
         run: |
