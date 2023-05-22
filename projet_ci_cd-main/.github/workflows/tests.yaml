@@ -31,6 +31,16 @@ jobs:
           # npm install
           # npm test
 
+      - name: Jenkins Integration
+        run: |
+          # Remplacez les valeurs ci-dessous par les informations de votre serveur Jenkins
+          export JENKINS_URL=<URL_DE_VOTRE_SERVEUR_JENKINS>
+          export JENKINS_USER=<VOTRE_NOM_D_UTILISATEUR>
+          export JENKINS_TOKEN=<VOTRE_TOKEN>
+          
+          # Exemple de commande pour déclencher un build dans Jenkins
+          curl -X POST -u $JENKINS_USER:$JENKINS_TOKEN $JENKINS_URL/job/NOM_DU_JOB/build
+          
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v1
         with:
