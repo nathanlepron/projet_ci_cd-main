@@ -32,14 +32,10 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t myapp .
-
-      - name: Run tests
+        
+      - name: Run tests on Docker image
         run: |
-          # Exécuter ici vos commandes de tests, par exemple :
-          # npm install
-          # npm test
-          with: 
-            myapp
+          docker run myapp mvn clean test
 
       - name: Jenkins Integration
         run: |
