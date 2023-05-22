@@ -7,7 +7,6 @@ RUN tar xzf dockerize.tar.gz
 RUN chmod +x dockerize
 
 # This is the first layer that won't be cached
-ARG ARTIFACT_NAME
 ADD app.jar /app.jar
 
 
