@@ -3,10 +3,10 @@ name: SonarQube Scan
 on:
   push:
     branches:
-      - main  # Modifier si nécessaire
+      - ci  # Modifier si nécessaire
   pull_request:
     branches:
-      - main  # Modifier si nécessaire
+      - ci  # Modifier si nécessaire
 
 jobs:
   build_test_and_scan:
