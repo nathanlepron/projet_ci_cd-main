@@ -35,7 +35,7 @@ jobs:
             ${{ env.cache-name }}
     
       - name: Build
-        uses: actions/setup-java@v2 cache-jar
+        uses: actions/setup-java@v2
         with:
          distribution: 'temurin' # See 'Supported distributions' for available options
          java-version: '17'
