@@ -26,9 +26,10 @@ jobs:
       - name: Build
         uses: actions/setup-java@v2
         with:
-            java-version: '11'
-            script:
-              -chmod +x ./mvnw
+         distribution: 'temurin' # See 'Supported distributions' for available options
+         java-version: '17'
+         script:
+              -chmod +x ./mvnw 
              -./mvnw package -Dmaven.test.skip=true
               -./mvnw compile
              -Dmaven.test.skip=true
