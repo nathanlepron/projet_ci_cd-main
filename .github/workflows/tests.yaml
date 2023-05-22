@@ -56,7 +56,7 @@ jobs:
           curl -X POST -u $JENKINS_USER:$JENKINS_TOKEN $JENKINS_URL/job/NOM_DU_JOB/build
           
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v3
+        uses: sonarsource/sonarqube-scan-action@master
         with:
           projectBaseDir: ./  # Modifier si nécessaire
           token: ${{ secrets.SONARQUBE_TOKEN }}
