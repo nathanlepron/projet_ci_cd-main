@@ -7,7 +7,7 @@ RUN tar xzf dockerize.tar.gz
 RUN chmod +x dockerize
 
 # This is the first layer that won't be cached
-ADD app.jar /app.jar
+# ADD app.jar /app.jar
 
 
 ENV SPRING_PROFILES_ACTIVE docker
