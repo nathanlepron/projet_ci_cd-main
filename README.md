@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Distributed version of the Spring PetClinic Sample Application built with Spring Cloud 
 
 [![Build Status](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices.svg?branch=master)](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -159,3 +160,19 @@ For pull requests, editor preferences are available in the [editor config](.edit
 
 [Configuration repository]: https://github.com/spring-petclinic/spring-petclinic-microservices-config
 [Spring Boot Actuator Production Ready Metrics]: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html
+=======
+# Projet management de qualité
+
+
+Possibilités de détection de SonarQube : 
+
+- Détection des bugs, des vulnérabilités et des duplications de code.
+
+- Analyse de la qualité du code et de la documentation.
+
+- Mesures de la couverture de code.
+
+- Intégration continue.
+
+
+>>>>>>> 859e54ef6afc087c223c43246762a24e7dcc40e6

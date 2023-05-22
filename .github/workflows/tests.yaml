@@ -1,0 +1,48 @@
+name: SonarQube Scan
+
+on:
+  push:
+    branches:
+      - main  # Modifier si nécessaire
+  pull_request:
+    branches:
+      - main  # Modifier si nécessaire
+
+jobs:
+  build_test_and_scan:
+    name: Build, Test, and SonarQube Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  # Modifier si nécessaire
+
+      - name: Build Docker image
+        run: docker build -t myapp .
+
+      - name: Run tests
+        run: |
+          # Exécuter ici vos commandes de tests, par exemple :
+          # npm install
+          # npm test
+
+      - name: Jenkins Integration
+        run: |
+          # Remplacez les valeurs ci-dessous par les informations de votre serveur Jenkins
+          export JENKINS_URL=<URL_DE_VOTRE_SERVEUR_JENKINS>
+          export JENKINS_USER=<VOTRE_NOM_D_UTILISATEUR>
+          export JENKINS_TOKEN=<VOTRE_TOKEN>
+          
+          # Exemple de commande pour déclencher un build dans Jenkins
+          curl -X POST -u $JENKINS_USER:$JENKINS_TOKEN $JENKINS_URL/job/NOM_DU_JOB/build
+          
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v1
+        with:
+          projectBaseDir: ./  # Modifier si nécessaire
+          token: ${{ secrets.SONARQUBE_TOKEN }}
