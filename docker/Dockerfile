@@ -7,7 +7,7 @@ RUN wget -O dockerize.tar.gz https://github.com/jwilder/dockerize/releases/downl
 RUN tar xzf dockerize.tar.gz
 RUN chmod +x dockerize
 RUN pwd
-RUN LS
+RUN ls
 
 # This is the first layer that won't be cached
 ADD app.jar /app.jar
