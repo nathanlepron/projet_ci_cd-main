@@ -23,19 +23,8 @@ jobs:
          distribution: 'temurin' # See 'Supported distributions' for available options
          java-version: '17'
     
-      - name: Cache jar
-        id: cache-jar
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-jar
-        with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.jar
-          key:
-            ${{ env.cache-name }}
-    
       - name: Build
-        uses: actions/setup-java@v2 cache-jar
+        uses: actions/setup-java@v2
         with:
          distribution: 'temurin' # See 'Supported distributions' for available options
          java-version: '17'
