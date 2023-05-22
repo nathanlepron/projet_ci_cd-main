@@ -40,6 +40,7 @@ jobs:
              -Djava.awt.headless=true
              --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
             -cp target/app.jar ${{ runner.workspace }}/app.jar
+            -ls
       - name: Build Docker image
         run: |
           pwd
