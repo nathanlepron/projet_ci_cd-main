@@ -1,5 +1,6 @@
 FROM openjdk:15-alpine
 VOLUME /tmp
+WORKDIR /app
 
 # Download dockerize and cache that layer
 RUN wget -O dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-alpine-linux-amd64-v0.6.1.tar.gz
