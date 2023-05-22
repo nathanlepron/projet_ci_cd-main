@@ -14,6 +14,22 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Build
+        uses: action/action@v1
+        with:
+            script:
+              -chmod +x ./mvnw
+             -./mvnw package -Dmaven.test.skip=true
+              -./mvnw compile
+             -Dmaven.test.skip=true
+             -Dhttps.protocols=TLSv1.2
+             -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
+             -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN
+             -Dorg.slf4j.simpleLogger.showDateTime=true
+             -Djava.awt.headless=true
+             --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
+
+    
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -42,7 +58,7 @@ jobs:
           curl -X POST -u $JENKINS_USER:$JENKINS_TOKEN $JENKINS_URL/job/NOM_DU_JOB/build
           
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v1
+        uses: sonarsource/sonarqube-scan-action@v3
         with:
           projectBaseDir: ./  # Modifier si nécessaire
           token: ${{ secrets.SONARQUBE_TOKEN }}
