@@ -41,6 +41,12 @@ jobs:
              --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
             -cp target/app.jar ${{ runner.workspace }}/app.jar
             -ls
+      - name: Archive artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-jar
+          path: ${{ runner.workspace }}/app.jar
+          
       - name: Build Docker image
         run: |
           pwd
