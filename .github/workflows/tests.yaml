@@ -41,7 +41,7 @@ jobs:
              --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
 
       - name: Build Docker image
-        run: docker build -t myapp .
+        run: docker build -t myapp /docker
         
       - name: Run tests on Docker image
         run: |
