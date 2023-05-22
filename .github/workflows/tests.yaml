@@ -29,9 +29,9 @@ jobs:
          distribution: 'temurin' # See 'Supported distributions' for available options
          java-version: '17'
          script:
-              -chmod +x ./mvnw 
-             -./mvnw package -Dmaven.test.skip=true
-              -./mvnw compile
+            -chmod +x ./mvnw 
+            -./mvnw package -Dmaven.test.skip=true
+            -./mvnw compile
              -Dmaven.test.skip=true
              -Dhttps.protocols=TLSv1.2
              -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
